@@ -1,66 +1,61 @@
 grammar_bali = {
-
-    "S": [
-        ("VP", "NP"), 
-        ("VP", "X1")   
-    ],
-
-    # VARIABEL X1
-    "X1": [
-        ("NP", "NP"),
-        ("NP", "PP"),
-        ("NP", "VP"),
-        ("NP", "AdvP"),
-        
-        # Jika kalimat masih panjang maka X1 memanggil X2
-        ("NP", "X2"),
-        ("VP", "X2")
-    ],
-
-    # VARIABEL X2
-    "X2": [
-        ("NP", "NP"),
-        ("NP", "PP"),
-        ("NP", "VP"),
-        ("NP", "AdvP"),
-
-        ("VP", "PP"),
-        ("VP", "PP"),
-        
-        # Jika kalimat masih panjang Maka X2 memanggil X3
-        ("NP", "X3")
-    ],
-
-    # VARIABEL X3
-    "X3": [
-        ("NP", "PP"),
-        ("NP", "AdvP"),
-        ("NP", "NP")
-    ],
-
-    # LEVEL FRASE
-    "NP": [
-        ("Det", "N"),   ("N", "Det"),  
-        ("N", "N"),     ("N", "Adj"),                   
-        ("N", "Pro"),   ("N", "A1"), 
-        ("NP", "VP")      
-    ],       
-
-    "PP": [("Prep", "N"), ("Prep", "NP")], 
     
-    "AdvP": [("Adv", "N"), ("Prep", "Adv")], 
+    #LEVEL KALIMAT (S)
+    "S": [
+        ("VP", "NP"),
+        ("VP", "X"),
+        #("NP", "VP") Kalimat NP dulu (Subyek + Predikat)
+    ],
 
-    "VP": [
-        ("Aux", "V"), ("V", "N"), ("V", "Adj"),
-        ("VP", "VP"), ("Adv", "V"),
+    #SISA BAGIAN KALIMAT (X)
+    "X": [
+        ("NP", "NP"),
+        ("NP", "PP"),
+        ("NP", "VP"),
+        ("NP", "AdvP"),
+        ("VP", "NP"),
+        ("VP", "PP"),
+
+        ("NP", "X"),
+        ("VP", "X")
+    ],
+
+    #LEVEL FRASE BENDA (NP)
+    "NP": [
+
+        ("Det", "N"), ("N", "Det"),
+        ("N", "N"),   ("N", "Adj"), 
+        ("N", "Pro"), ("N", "Num"),
+        
+        ("NP", "Det"),
+        ("NP", "Adj"),
+        ("NP", "VP"),
+        ("NP", "PP"), 
+        ("NP", "NP") 
+    ],
+
+    #LEVEL FRASE PREPOSISI (PP)
+    "PP": [
+        ("Prep", "N"), 
+        ("Prep", "NP")
+    ], 
+    
+    # LEVEL FRASE KETERANGAN (AdvP)
+    "AdvP": [
+        ("Adv", "N"), 
+        ("Prep", "Adv")
     ], 
 
-    "A1": [
-        ("N", "N"), ("N", "Num"), ("N", "Adj"),
-        ("N", "Det"), ("N", "A2"), ("Adj", "Det")
-    ],
-
-    "A2": [ ("Adj", "V") ]
+    #LEVEL FRASE KERJA (VP)
+    "VP": [
+        ("Aux", "V"), 
+        ("V", "N"), 
+        ("V", "Adj"),
+        ("VP", "VP"), 
+        ("Adv", "V"),
+        ("VP", "PP"),
+        ("VP", "NP") 
+    ]
 }
 
 
@@ -123,7 +118,7 @@ lexicon_bali = {
     "stroberi": ["NP", "N"], "gurune": ["NP", "N"], "adine": ["NP", "N"],
     "bapane": ["NP", "N"], "gambar": ["NP", "N"], "pemacul": ["NP", "N"],
     "pegawe": ["NP", "N"], "yowanene": ["NP", "N"],"paon": ["NP", "N"],
-    "wayan": ["NP", "N"],
+    "wayan": ["NP", "N"], "ngajeng": ["NP", "N"],
 
     #Adj
     "cenik": ["Adj"], "rajin": ["Adj"], "lingsir": ["Adj"], "anyar": ["Adj"],
