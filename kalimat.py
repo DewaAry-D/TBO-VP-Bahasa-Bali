@@ -26,7 +26,7 @@ daftar_kalimat = [
     "Nyemakang bapa timpalne pancing",
     "Ngalihang bapa sampine padang",
     "Ngurukang Bli Made I Agus nepak kendang",
-    "Ngincen tiang I Agus meplalian guli",
+    "Ngicen tiang I Agus meplalian guli",
     "Ngai jukung bapane di sisin pasih",
     "Ngendingang lagu yowanene di banjar",
     "Nyait wastra pare Istri ring wantilan",
