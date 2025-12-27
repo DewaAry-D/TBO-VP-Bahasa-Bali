@@ -2,39 +2,74 @@ grammar_bali = {
     
     #LEVEL KALIMAT (S)
     "S": [
+        # POLA INTRANSITIF (PREDIKAT + SUBYEK)
+        ("Vi", "NP"),
+        ("Vi", "SB"),
+
+        # POLA TRANSITIF (PREDIKAT FRASA + SUBYEK)
         ("VP", "NP"),
-        ("VP", "X"),
-        #("NP", "VP") Kalimat NP dulu (Subyek + Predikat)
+        ("VP", "SB"),
+
+        # 3. POLA SUBYEK DI DEPAN (S-P)
+        # ("NP", "VP"),
+        # ("NP", "Vi"),
     ],
 
-    #SISA BAGIAN KALIMAT (X)
-    "X": [
+    # SISA BAGIAN KALIMAT (SB)
+    "SB": [
         ("NP", "NP"),
         ("NP", "PP"),
         ("NP", "VP"),
-        ("NP", "AdvP"),
+        ("NP", "Vi"),
+        ("NP", "AdvP"), 
         ("VP", "NP"),
         ("VP", "PP"),
+        ("VP", "AdvP"),
 
-        ("NP", "X"),
-        ("VP", "X")
+        ("Adj", "NP"), 
+        ("Adj", "SB"),
+
+        # Pola Rekursif
+        ("NP", "SB"),
+        ("VP", "SB")
     ],
 
-    #LEVEL FRASE BENDA (NP)
-    "NP": [
+    # LEVEL FRASE KERJA (VP)
+    "VP": [
+        ("Vt", "NP"),
+        ("Vt", "N"),
+        ("Vt", "Adj"), 
+        ("Vt", "VP"),
+        ("Vt", "PP"),
+        ("Vt", "SB"),
 
+        ("Vt", "Vi"),
+
+        ("Aux", "V"),  
+        ("Aux", "Vi"),  
+        ("Aux", "Vt"),
+        ("Adv", "V"), 
+        ("VP", "VP"),   
+        ("VP", "PP"), 
+        ("VP", "AdvP")
+    ],
+
+    # LEVEL FRASE BENDA (NP)
+    "NP": [
         ("Det", "N"), ("N", "Det"),
         ("N", "N"),   ("N", "Adj"), 
         ("N", "Pro"), ("N", "Num"),
         
+        # Rekursif NP
         ("NP", "Det"),
         ("NP", "Adj"),
         ("NP", "VP"),
-        ("NP", "PP"), 
-        ("NP", "NP") 
+        ("NP", "Vi"),
+        ("NP", "PP"),
+        ("NP", "NP")
     ],
 
-    #LEVEL FRASE PREPOSISI (PP)
+    # LEVEL FRASE PREPOSISI (PP)
     "PP": [
         ("Prep", "N"), 
         ("Prep", "NP")
@@ -45,39 +80,73 @@ grammar_bali = {
         ("Adv", "N"), 
         ("Prep", "Adv")
     ], 
-
-    #LEVEL FRASE KERJA (VP)
-    "VP": [
-        ("Aux", "V"), 
-        ("V", "N"), 
-        ("V", "Adj"),
-        ("VP", "VP"), 
-        ("Adv", "V"),
-        ("VP", "PP"),
-        ("VP", "NP") 
-    ]
+    
 }
 
-
 lexicon_bali = {
-    #KATA KERJA (V) & PREDIKAT (VP)
-    "melaib": ["V", "VP"], "makeber": ["V", "VP"], "ngeling": ["V", "VP"], "sirep": ["V", "VP"],
-    "nyakan": ["V", "VP"], "ngwacen": ["V", "VP"], "ngajin": ["V", "VP"], "mula": ["V", "VP"],
-    "minum": ["V", "VP"], "nulis": ["V", "VP"], "numbas": ["V", "VP"], "nabuh": ["V", "VP"],
-    "dadi": ["V", "VP"], "negak": ["V", "VP"], "mekarya": ["VP", "V"], "menek": ["V", "VP"],
-    "maprakara": ["V", "VP"], "numbasang": ["V", "VP"], "nyeduhang": ["V", "VP"], "milih": ["V", "VP"],
-    "nyemakang": ["V", "VP"], "ngalihang": ["V", "VP"], "ngurukang": ["V", "VP"], "nepak": ["V"],
-    "ngincen": ["V", "VP"], "meplayanan": ["V", "VP"], "ngai": ["V", "VP"], "ngendingang": ["V", "VP"],
-    "nyait": ["V", "VP"], "mubut": ["V", "VP"], "ngamah": ["V", "VP"], "merayunan": ["V", "VP"],
-    "ngadol": ["V", "VP"], "ngejuk": ["V", "VP"], "melajah": ["V", "VP"], "nyetir": ["V"],
-    "demen": ["V", "VP"], "melali": ["VP", "V"], "engsap": ["V", "VP"], "megae": ["V", "VP"],
-    "ngigel": ["V"], "nyalon": ["V", "VP"], "ngainang": ["V", "VP"], "nyilihang": ["V", "VP"],
-    "ngalapang": ["V", "VP"], "nawahang": ["V", "VP"], "ngajahang": ["V", "VP"], "lekad": ["V"],
-    "dados": ["V"], "ngemaang": ["V", "VP"], "ngebaang": ["V", "VP"], "ngicen": ["V", "VP"],
-    "meplalian": ["V", "VP"],
+    # KATA KERJA INTRANSITIF (Vi)
+    # Tidak butuh objek untuk jadi predikat
+    "melaib":   ["Vi", "V"], 
+    "makeber":  ["Vi", "V"], 
+    "ngeling":  ["Vi", "V"], 
+    "sirep":    ["Vi", "V"],
+    "negak":    ["Vi", "V"], 
+    "menek":    ["Vi", "V"], 
+    "lekad":    ["Vi", "V"],
+    "melali":   ["Vi", "V"],
+    "ngigel":   ["Vi", "V"],
+    "maprakara": ["Vi", "V"],
+    "meplayanan": ["Vi", "V"],
+    "merayunan": ["Vi", "V"],
+    "ngajeng": ["Vi", "V"],
+    "megae":    ["Vi", "V"],
 
+    # KATA KERJA TRANSITIF (Vt)
+    # Butuh objek (NP) untuk membentuk VP
+    "ngamah":   ["Vt", "V"], 
+    "nyakan":   ["Vt", "V"], 
+    "nulis":    ["Vt", "V"], 
+    "numbas":   ["Vt", "V"],
+    "ngwacen":  ["Vt", "V"],
+    "ngajin":   ["Vt", "V"],
+    "minum":    ["Vt", "V"],
+    "nabuh":    ["Vt", "V"],
+    "ngai":     ["Vt", "V"],
+    "nyait":    ["Vt", "V"],
+    "mubut":    ["Vt", "V"],
+    "ngadol":   ["Vt", "V"],
+    "ngejuk":   ["Vt", "V"],
+    "nyetir":   ["Vt", "V"],
+    "ngincen":  ["Vt", "V"], 
+    "ngendingang": ["Vt", "V"],
+    "nyeduhang": ["Vt", "V"],
+    "ngurukang": ["Vt", "V"], 
+    "nepak":    ["Vt", "V"],
+    "nawahang": ["Vt", "V"],
+    "ngajahang": ["Vt", "V"],
+    "ngalapang": ["Vt", "V"],
+    "nyilihang": ["Vt", "V"],
+    "ngainang": ["Vt", "V"],
+    "nyalon":   ["Vt", "V"],
+    "engsap":   ["Vt", "V"],
+    "demen":    ["Vt", "V"],
+    "milih":    ["Vt", "V"],
+    "nyemakang": ["Vt", "V"],
+    "ngalihang": ["Vt", "V"],
+    "numbasang": ["Vt", "V"],
+    "ngemaang": ["Vt", "V", "VP"],
+    "ngebaang": ["Vt", "V"],
+    "ngicen":   ["Vt", "V"],
+    "meplalian": ["Vt", "V"],
+    "mula": ["Vt", "V"],
+    
+    # Kata Kerja Khusus / Kopula
+    "melajah":  ["Vi", "V", "Vt"],
+    "mekarya":  ["Vi", "V", "VP"],
+    "dadi":     ["Vt", "V", "VP"],
+    "dados":    ["Vt", "V", "VP"], 
 
-    #KATA BENDA (N) & FRASE BENDA (NP)
+    # KATA BENDA (N) & FRASE BENDA (NP)
     "anak": ["NP", "N"], "kedis": ["NP", "N"], "bayi": ["NP", "N"], 
     "bapak": ["NP", "N"], "bapa": ["NP", "N"], "meme": ["NP", "N"], 
     "nasi": ["NP", "N"], "siswa": ["NP", "N"], "murid": ["NP", "N"], 
@@ -118,27 +187,27 @@ lexicon_bali = {
     "stroberi": ["NP", "N"], "gurune": ["NP", "N"], "adine": ["NP", "N"],
     "bapane": ["NP", "N"], "gambar": ["NP", "N"], "pemacul": ["NP", "N"],
     "pegawe": ["NP", "N"], "yowanene": ["NP", "N"],"paon": ["NP", "N"],
-    "wayan": ["NP", "N"], "ngajeng": ["NP", "N"],
+    "wayan": ["NP", "N"],
 
-    #Adj
+    # SIFAT (Adj)
     "cenik": ["Adj"], "rajin": ["Adj"], "lingsir": ["Adj"], "anyar": ["Adj"],
     "truna": ["Adj"], "gede": ["Adj"], "kelih": ["Adj"], "anget": ["Adj"],
     "pait": ["Adj"], "lanang": ["Adj"], "cerik": ["Adj"],
 
-    #Adv
+    # KETERANGAN (Adv)
     "buin": ["Adv"], "mani": ["Adv"], "ibi": ["Adv"], "sanja": ["Adv"],
     "mare": ["Adv"],
     
-    #Det
+    # KATA BANTU (Det)
     "i": ["Det"], "ento": ["Det"], "punika": ["Det"], "nika": ["Det"],
     "pare": ["Det"], "tiange": ["Det"],
     
-    #Aux
+    # AUXILIARY (Aux)
     "nu": ["Aux"], "lakar": ["Aux"], "kari": ["Aux"], "wau": ["Aux"], "wawu": ["Aux"],
 
-    #Prep
+    # PREPOSISI (Prep)
     "di": ["Prep"], "ring": ["Prep"], "uli": ["Prep"], "ka": ["Prep"],
     
-    #Num
+    # NUMERIK (Num)
     "nem": ["Num"]
 }
