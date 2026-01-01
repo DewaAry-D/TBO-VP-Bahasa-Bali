@@ -10,9 +10,7 @@ class CYKParser:
         words = sentence.lower().split()
         n = len(words)
         
-
         table = [[[] for _ in range(n)] for _ in range(n)]
-
 
         print(f"\nMenganalisis Kata Dasar:")
         for i, word in enumerate(words):
@@ -28,21 +26,28 @@ class CYKParser:
         for l in range(2, n + 1):
             for i in range(n - l + 1):
                 j = i + l - 1
-                for k in range(i, j):
+                for k in range(i, j): 
                     left_cell = table[i][k]
                     right_cell = table[k + 1][j]
 
                     for head, productions in self.grammar.items():
-                        for left_sym, right_sym in productions:
+                        for production in productions:
+                            if len(production) != 2:
+                                continue 
+                                
+                            left_sym, right_sym = production
+                            
                             for l_node in left_cell:
                                 for r_node in right_cell:
                                     if l_node[0] == left_sym and r_node[0] == right_sym:
                                         new_node = (head, l_node, r_node)
-                                        table[i][j].append(new_node)
+                                        if new_node not in table[i][j]:
+                                            table[i][j].append(new_node)
 
         final_cell = table[0][n - 1]
         for node in final_cell:
-            if node[0] == 'S': 
+
+            if node[0] == 'K': 
                 return node 
         return None
 
@@ -57,15 +62,14 @@ class CYKParser:
             self.print_tree(node[1], level + 1)
             self.print_tree(node[2], level + 1)
 
-
-
 if __name__ == "__main__":
     parser = CYKParser(grammar_bali, lexicon_bali)
 
     input_text = input("\nMasukkan Kalimat Bahasa Bali: ")
     
     if not input_text.strip():
-        input_text = "Ngalihang Bapa I Meme saang uli alase"
+        # Contoh default
+        input_text = "Melaib anak lanang ento"
 
     print(f"\nMemproses: \"{input_text}\"")
     tree = parser.parse(input_text)
