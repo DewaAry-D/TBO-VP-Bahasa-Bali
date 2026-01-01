@@ -4,6 +4,7 @@ grammar_bali = {
     "S": [
         # POLA INTRANSITIF (PREDIKAT + SUBYEK)
         ("Vi", "NP"),
+        ("Vt", "Pro"),
         ("Vi", "SB"),
 
         # POLA TRANSITIF (PREDIKAT FRASA + SUBYEK)
@@ -97,12 +98,12 @@ lexicon_bali = {
     "ngigel":   ["Vi", "V"],
     "maprakara": ["Vi", "V"],
     "meplayanan": ["Vi", "V"],
-    "merayunan": ["Vi", "V"],
-    "ngajeng": ["Vi", "V"],
     "megae":    ["Vi", "V"],
 
     # KATA KERJA TRANSITIF (Vt)
     # Butuh objek (NP) untuk membentuk VP
+    "merayunan": ["Vt", "V"],
+    "ngajeng": ["Vt", "V"],
     "ngamah":   ["Vt", "V"], 
     "nyakan":   ["Vt", "V"], 
     "nulis":    ["Vt", "V"], 
@@ -188,6 +189,17 @@ lexicon_bali = {
     "bapane": ["NP", "N"], "gambar": ["NP", "N"], "pemacul": ["NP", "N"],
     "pegawe": ["NP", "N"], "yowanene": ["NP", "N"],"paon": ["NP", "N"],
     "wayan": ["NP", "N"],
+
+    # Pro
+    "tiang": ["Pro", "NP", "N"], 
+    "ipun": ["Pro", "NP", "N"],
+    "bapa": ["Pro", "NP", "N"],
+    "meme": ["Pro", "NP", "N"],
+    "anak": ["Pro", "NP", "N"], 
+    "ida": ["Pro", "NP", "N"],
+    "ia": ["Pro", "NP", "N"],
+    "murid":["Pro", "NP", "N"],
+    "guru":["Pro", "NP", "N"],
 
     # SIFAT (Adj)
     "cenik": ["Adj"], "rajin": ["Adj"], "lingsir": ["Adj"], "anyar": ["Adj"],
