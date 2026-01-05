@@ -39,7 +39,7 @@ class CYKParser:
 
         final_cell = table[0][n - 1]
         for node in final_cell:
-            if node[0] == 'S': 
+            if node[0] == 'K': 
                 return node 
         return None
 

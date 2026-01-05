@@ -11,7 +11,6 @@ grammar_bali = {
     # LEVEL X (Variabel Perantara CNF) - BERSIH / MURNI
     # ---------------------------------------------------------
     "X": [
-        # Aturan Penggabungan Fungsi (Tanpa Substitusi Noun/NP disini)
         ("O", "S"), ("S", "O"), 
         ("O", "Pel"), ("Pel", "S"), 
         ("S", "Pel"), ("S", "Ket"),
@@ -41,7 +40,6 @@ grammar_bali = {
     ],
 
     "NP": [
-        # Aturan Dasar NP
         ("Noun", "Noun"), ("Noun", "Pronoun"), ("Noun", "Adj"),
         ("Noun", "Det"), ("Noun", "Num"), ("Det", "Noun"),
         ("NP", "Det"), ("NP", "Adj"), ("NP", "VP"),
@@ -52,48 +50,41 @@ grammar_bali = {
     # ---------------------------------------------------------
     # LEVEL FUNGSI (S, O, Pel, Ket) - SUBSTITUSI LENGKAP
     # ---------------------------------------------------------
-    
     "S": [ 
-        ("Det", "Noun"), ("Noun", "Det"), ("Noun", "Noun"), ("NP", "NP"),
-        # SUBSTITUSI NP
-        ("Noun", "Pronoun"), ("Noun", "Adj"), ("Noun", "Num"),
-        ("NP", "Det"), ("NP", "Adj"),
+        ("Det", "Noun"), ("Noun", "Det"), ("Noun", "Noun"), 
+        ("NP", "NP"), ("Noun", "Pronoun"), ("Noun", "Adj"),
+        ("Noun", "Num"), ("NP", "Det"), ("NP", "Adj"),
         ("NP", "Num"), ("NP", "Noun"), 
-        # ("Noun", "NP"),
-        # ("NP", "VP"),
     ],
 
     "O": [ 
         ("Det", "Noun"), ("Noun", "Det"), ("NP", "Noun"),
-        ("Noun", "Noun"), ("NP", "NP"),
-        ("Noun", "Pronoun"), ("Noun", "Adj"), ("Noun", "Num"),
-        ("NP", "Det"), ("NP", "Adj"),
-        ("NP", "Num"), ("NP", "Noun"), ("Noun", "NP"),
-        # ("NP", "VP"),
+        ("Noun", "Noun"), ("NP", "NP"), ("Noun", "Pronoun"),
+        ("Noun", "Adj"), ("Noun", "Num"), ("NP", "Det"),
+        ("NP", "Adj"), ("NP", "Num"), ("Noun", "NP"),
     ],
 
     "Pel": [ 
-        ("Verb", "Noun"), ("VP", "NP"),
-        ("Adv", "Verb"), 
-        # SUBSTITUSI NP
-        ("Det", "Noun"), ("Noun", "Det"), ("Noun", "Noun"), ("Noun", "Pronoun"),
-        ("Noun", "Adj"), ("Noun", "Num"), ("NP", "Det"), ("NP", "Adj"),
-        ("Noun", "NP"),
+        ("Verb", "Noun"), ("VP", "NP"), ("Det", "Noun"),
+        ("Adv", "Verb"), ("Noun", "Det"), ("Noun", "Noun"),
+        ("Noun", "Pronoun"), ("Noun", "Adj"), ("Noun", "Num"),
+        ("NP", "Det"), ("NP", "Adj"), ("Noun", "NP"),
     ],
 
     "Ket": [
         ("Prep", "Adv"), ("Prep", "Noun"), ("Prep", "NP"),
-        ("PP", "Noun"), ("PP", "NP"), ("Adv", "Noun")
+        ("PP", "Noun"), ("PP", "NP"), ("Adv", "Noun"),
+        ("Adv", "NP")
     ],
 
     "PP": [
         ("Prep", "Noun"), ("Prep", "NP"),
-    ]
+    ],
 }
 
 lexicon_bali = {
     # ==================================
-    # VERB (Menggabungkan Vi dan Vt)
+    # VERB
     # ==================================
     "melaib":   ["Verb", "P"], 
     "makeber":  ["Verb", "P"],  

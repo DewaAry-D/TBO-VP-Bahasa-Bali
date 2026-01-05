@@ -1,7 +1,7 @@
 daftar_kalimat = [
     "Melaib anak lanang ento",
     "Makeber kedis cenik",
-    "Ngeling anak cerik mare lekad",
+    "Ngeling anak cerik ento",
     "Sirep bapak tiang",
     "Nyakan nasi meme tiang",
     "Ngwacen buku murid rajin ento",
