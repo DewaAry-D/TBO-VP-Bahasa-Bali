@@ -3,31 +3,43 @@ grammar_bali = {
     # LEVEL KALIMAT (K)
     # ---------------------------------------------------------
     "K": [
-        ("P", "X"),  # PRIORITAS 1: Struktur Kompleks (P + O + S)
-        ("P", "S"),  # Prioritas 2: Struktur Sederhana (P + S)
+        ("X2", "O"),
+        ("X1", "S"),
+        ("X2", "X10"),
+        ("X1", "X9"),
+        ("X2", "X7"),
+        ("X1", "X6"),
+        ("X2", "X8"),
+        ("X3", "X6"),
+        ("X2", "X5"),
+        ("X1", "X4"),
+        ("X3", "S"),
+        ("X2", "Pel"),
+        ("P", "S"),
     ],
 
     # ---------------------------------------------------------
     # LEVEL X (Variabel Perantara CNF) - BERSIH / MURNI
     # ---------------------------------------------------------
-    "X": [
-        ("O", "S"), ("S", "O"), 
-        ("O", "Pel"), ("Pel", "S"), 
-        ("S", "Pel"), ("S", "Ket"),
-        ("O", "Ket"), ("Pel", "Ket"), 
-        ("X", "Pel"), ("X", "Ket"), 
-        ("X", "X"), ("S", "X"),
-        ("O", "X"), 
-    ],
+    "X1": [ ("P", "O") ],
+    "X2": [ ("P", "S") ],
+    "X3": [ ("P", "Pel") ],
+    "X4": [ ("S", "Pel") ],
+    "X5": [ ("O", "Pel") ],
+    "X6": [ ("S", "Ket") ],
+    "X7": [ ("O", "Ket") ],
+    "X8": [ ("Pel", "Ket") ],
+    "X9": [ ("X4", "Ket") ],
+    "X10": [ ("X5", "Ket") ],
 
     # ---------------------------------------------------------
     # LEVEL PREDIKAT (P)
     # ---------------------------------------------------------
     "P": [
+        ("Adv", "Verb"),
         ("Aux", "Verb"),
         ("Verb", "Adj"),
-        ("Adv", "Verb"),
-        # ("Verb", "Noun"),
+        ("Verb", "Verb"),
     ],
 
     # ---------------------------------------------------------
@@ -40,41 +52,57 @@ grammar_bali = {
     ],
 
     "NP": [
-        ("Noun", "Noun"), ("Noun", "Pronoun"), ("Noun", "Adj"),
-        ("Noun", "Det"), ("Noun", "Num"), ("Det", "Noun"),
-        ("NP", "Det"), ("NP", "Adj"), ("NP", "VP"),
-        ("NP", "NP"),("NP", "Num"), ("Noun", "NP"),
+        ("Noun", "Pronoun"), ("Noun", "Adj"),
+        ("Noun", "Num"), 
+        ("NP", "Adj"), 
+        ("NP", "Num"), 
         ("NP", "Noun"),
+        ("NP", "Propnoun"),
+        ("Noun", "Propnoun"),
+        ("Noun", "Noun"), 
     ],
 
     # ---------------------------------------------------------
     # LEVEL FUNGSI (S, O, Pel, Ket) - SUBSTITUSI LENGKAP
     # ---------------------------------------------------------
     "S": [ 
-        ("Det", "Noun"), ("Noun", "Det"), ("Noun", "Noun"), 
-        ("NP", "NP"), ("Noun", "Pronoun"), ("Noun", "Adj"),
-        ("Noun", "Num"), ("NP", "Det"), ("NP", "Adj"),
-        ("NP", "Num"), ("NP", "Noun"), 
+        ("Noun", "Det"), 
+        ("Noun", "Pronoun"), ("Noun", "Adj"),
+        ("Noun", "Num"),  
+        ("Part", "Noun"),
+        ("Part", "Propnoun"),
+        ("NP", "Propnoun"),
+        ("NP", "Adj"),
+        ("NP", "Num"),
+        ("NP", "Det"), 
+        ("Det", "NP"),
+        ("NP", "Noun"), 
+        ("Noun", "Noun"), 
     ],
 
     "O": [ 
-        ("Det", "Noun"), ("Noun", "Det"), ("NP", "Noun"),
-        ("Noun", "Noun"), ("NP", "NP"), ("Noun", "Pronoun"),
-        ("Noun", "Adj"), ("Noun", "Num"), ("NP", "Det"),
-        ("NP", "Adj"), ("NP", "Num"), ("Noun", "NP"),
+        ("Noun", "Det"),
+        ("Noun", "Pronoun"),
+        ("Noun", "Adj"), ("Noun", "Num"), 
+        ("NP", "Det"), ("NP", "Noun"),
+        ("NP", "Adj"), ("NP", "Num"), 
+        ("Noun", "NP"),
+        ("Part", "Noun"),
     ],
 
     "Pel": [ 
-        ("Verb", "Noun"), ("VP", "NP"), ("Det", "Noun"),
+        ("Verb", "Noun"), ("VP", "NP"),
         ("Adv", "Verb"), ("Noun", "Det"), ("Noun", "Noun"),
         ("Noun", "Pronoun"), ("Noun", "Adj"), ("Noun", "Num"),
-        ("NP", "Det"), ("NP", "Adj"), ("Noun", "NP"),
+        ("NP", "Det"), ("NP", "Adj"), 
+
     ],
 
     "Ket": [
-        ("Prep", "Adv"), ("Prep", "Noun"), ("Prep", "NP"),
+        ("Prep", "Adv"), ("Prep", "Noun"),
         ("PP", "Noun"), ("PP", "NP"), ("Adv", "Noun"),
-        ("Adv", "NP")
+        ("Adv", "NP"), ("Prep", "NounT"), ("Prep", "Propnoun"), 
+        ("Prep", "NP"), ("NounT", "NP"), ("NounT", "NounT"),
     ],
 
     "PP": [
@@ -137,8 +165,6 @@ lexicon_bali = {
     "meplalian": ["Verb", "P"], 
     "mula":     ["Verb", "P"], 
     "nyampat": ["Verb", "P"], 
-    
-    # Kata Kerja yang bisa jadi Terminal/Noun di konteks tertentu
     "melajah":  ["Verb", "P", "Pel"], 
     "mekarya":  ["Verb", "P"], 
     "dadi":     ["Verb", "P"], 
@@ -147,94 +173,125 @@ lexicon_bali = {
     # ==================================
     # NOUN (Kata Benda)
     # ==================================
-    "anak": ["Noun"], "kedis": ["Noun"], "bayi": ["Noun"], 
-    "bapak": ["Noun"], "bapa": ["Noun"], "meme": ["Noun"], 
-    "nasi": ["Noun"], "siswa": ["Noun"], "murid": ["Noun"], 
-    "guru": ["Noun"], "petani": ["Noun"], 
-    
-    "pesaur": ["Noun"], "tugas": ["Noun"], "okan": ["Noun"], 
-    "biang": ["Noun"], "dewi": ["Noun"], "sepatu": ["Noun"], 
-    "gamelan": ["Noun"], "baleganjur": ["Noun"], 
-    "pria": ["Noun"], "motor": ["Noun"], 
-    "pegawai": ["Noun"], "staff": ["Noun"], "panak": ["Noun"], 
-    "belin": ["Noun"], "ketua": ["Noun"], "stt": ["Noun"], 
-    "kepala": ["Noun"], "bagian": ["Noun"], "dokter": ["Noun"], 
-    "mahasiswa": ["Noun"], "asisten": ["Noun"], "dosen": ["Noun"], 
-    "ajus": ["Noun"], "wi": ["Noun"], "adi": ["Noun"], 
-    "tamiu": ["Noun"], "teh": ["Noun"], "ajik": ["Noun"], 
-    "koster": ["Noun"], "krama": ["Noun"], "gubernur": ["Noun"], 
-    "putu": ["Noun"], "bekel": ["Noun"], "timpalne": ["Noun"], 
-    "pancing": ["Noun"], "sampi": ["Noun"], "sampine": ["Noun"],
-    "padang": ["Noun"], "bli": ["Noun"], "agus": ["Noun"], 
-    "kendang": ["Noun"], "tiang": ["Noun", "Pronoun"], 
-    "guli": ["Noun"], 
-    "sisin": ["Noun"], "pasih": ["Noun"], 
-    "yowanane": ["Noun"], "lagu": ["Noun"], "banjar": ["Noun"], 
-    "istri": ["Noun"], "wantilan": ["Noun"], 
-    "pekak": ["Noun"], "tegal": ["Noun"], 
-    "pewaregan": ["Noun"], "ia": ["Noun", "Pronoun"], "sayur": ["Noun"], 
-    "peken": ["Noun"], "nelayan": ["Noun"], "bendegane": ["Noun"], 
-    "be": ["Noun"], "luh": ["Noun"], "sari": ["Noun"], 
-    "tunangan": ["Noun"], "mobil": ["Noun"], "lapangan": ["Noun"], 
-    "ketut": ["Noun"], "peteng": ["Noun"], 
-    "sopir": ["Noun"], "denpasar": ["Noun"], "jauk": ["Noun"], 
-    "sanggar": ["Noun"], "kadek": ["Noun"], "perbekel": ["Noun"], 
-    "desa": ["Noun"], "sanur": ["Noun"], "don": ["Noun"], 
-    "kopi": ["Noun"], "sisia": ["Noun"], "aksara": ["Noun"], 
-    "bali": ["Noun"], "kelas": ["Noun"], "tulis": ["Noun"], 
-    "tengai": ["Noun"], "saang": ["Noun"], "alase": ["Noun"], 
-    "pedagang": ["Noun"], "turisne": ["Noun"], "kamben": ["Noun"], 
-    "tongos": ["Noun"], "tamiune": ["Noun"], "buah": ["Noun"], 
-    "stroberi": ["Noun"], "gurune": ["Noun"],
-    "bapane": ["Noun"], "gambar": ["Noun"], "pemacul": ["Noun"],
-    "pegawe": ["Noun"], "yowanene": ["Noun"], "paon": ["Noun"],
-    "wayan": ["Noun"], "baline": ["Noun"], "wisate": ["Noun"],
+    "anak": ["NP", "Noun"], "kedis": ["NP", "Noun"], "bayi": ["NP", "Noun"], 
+    "bapak": ["NP", "Noun"], "meme": ["NP", "Noun"], 
+    "siswa": ["NP", "Noun"], "murid": ["NP", "Noun"], 
+    "guru": ["NP", "Noun"], "petani": ["NP", "Noun"], 
+    "pesaur": ["NP", "Noun"], "tugas": ["NP", "Noun"], "okan": ["NP", "Noun"], 
+    "biang": ["NP", "Noun"], "dewi": ["NP", "Noun"], "sepatu": ["NP", "Noun"], 
+    "gamelan": ["NP", "Noun"], "baleganjur": ["NP", "Noun"], 
+    "pria": ["NP", "Noun"], "motor": ["NP", "Noun"], 
+    "pegawai": ["NP", "Noun"], "staff": ["NP", "Noun"], "panak": ["NP", "Noun"], 
+    "belin": ["NP", "Noun"], "ketua": ["NP", "Noun"], "stt": ["NP", "Noun"], 
+    "kepala": ["NP", "Noun"], "bagian": ["NP", "Noun"], "dokter": ["NP", "Noun"], 
+    "mahasiswa": ["NP", "Noun"], "asisten": ["NP", "Noun"], "dosen": ["NP", "Noun"], 
+    "wi": ["NP", "Noun"], "adi": ["NP", "Noun"], 
+    "tamiu": ["NP", "Noun"], "teh": ["NP", "Noun"], "ajik": ["NP", "Noun"], 
+    "krama": ["NP", "Noun"], "gubernur": ["NP", "Noun"], 
+    "pancing": ["NP", "Noun"], "sampi": ["NP", "Noun"], "sampine": ["NP", "Noun"],
+    "bli": ["NP", "Noun"], "agus": ["NP", "Noun"], 
+    "kendang": ["NP", "Noun"], "tiang": ["Noun", "Pronoun"], "guli": ["NP", "Noun"], 
+    "sisin": ["NP", "Noun"], "pasih": ["NP", "Noun"], 
+    "lagu": ["NP", "Noun"], "banjar": ["NP", "Noun"], 
+    "istri": ["NP", "Noun"], "wantilan": ["NP", "Noun"], 
+    "pekak": ["NP", "Noun"], "tegal": ["NP", "Noun"], 
+    "pewaregan": ["NP", "Noun"], "ia": ["Noun", "Pronoun"], "sayur": ["NP", "Noun"], 
+    "peken": ["NP", "Noun"], "nelayan": ["NP", "Noun"],
+    "be": ["NP", "Noun"], "luh": ["NP", "Noun"], 
+    "tunangan": ["NP", "Noun"], "mobil": ["NP", "Noun"], "lapangan": ["NP", "Noun"], 
+    "peteng": ["NP", "Noun"], "sopir": ["NP", "Noun"], "jauk": ["NP", "Noun"], 
+    "sanggar": ["NP", "Noun"], "perbekel": ["NP", "Noun"], 
+    "desa": ["NP", "Noun"], "don": ["NP", "Noun"], 
+    "kopi": ["NP", "Noun"], "sisia": ["NP", "Noun"], "aksara": ["NP", "Noun"], 
+    "kelas": ["NP", "Noun"], "tulis": ["NP", "Noun"], 
+    "tengai": ["NP", "Noun"], "alase": ["NP", "Noun"], 
+    "turisne": ["NP", "Noun"], "kamben": ["NP", "Noun"], 
+    "tongos": ["NP", "Noun"], "buah": ["NP", "Noun"], 
+    "stroberi": ["NP", "Noun"], "gurune": ["NP", "Noun"],
+    "gambar": ["NP", "Noun"], "pemacul": ["NP", "Noun"],
+    "pegawe": ["NP", "Noun"], "paon": ["NP", "Noun"],
+    "baline": ["NP", "Noun"], "wisate": ["NP", "Noun"],
+    "lanang": ["NP", "Noun"],
+    "buku": ["NP", "Noun"],
+    "jukung": ["NP", "Noun"],
+    "sela": ["NP", "Noun"],
+    "jukut": ["NP", "Noun"],
+    "ares": ["NP", "Noun"],
+    "yeh": ["NP", "Noun"],
 
     # ==================================
     # OBJEK
     # ==================================
-    "buku": ["O", "Noun"], "nasi": ["O","Noun"], "padi": ["O","Noun"],
-    "adine": ["O", "S", "Noun"], "putu": ["O", "Noun"], "jukung": ["O", "Noun"],
-    "wastra": ["O", "Noun"],
+    "nasi": [ "Noun", "O", "NP"], "buku": [ "Noun", "O", "NP"],
+    "padi": [ "Noun", "O", "NP"], "susu": [ "Noun", "O", "NP"],
+    "tamiune": [ "Noun", "O", "NP"],
+    "adine": ["O", "S", "Noun"],
+    "lagu": ["O", "NP", "Noun"],
+    "wastra": ["O", "NP", "Noun"],
+    "padang": ["O", "NP", "Noun"],
+    "sampi": ["O", "NP", "Noun"],
+    "timpalne": ["O", "NP", "Noun"], 
+
+    "bekel": ["Pel", "NP", "Noun"],
+    "saang": ["Pel", "NP", "Noun"],
 
     # ==================================
-    # Subjek
+    # Subjek dan PROPNOUN dan Pronoun
     # ==================================
-    "susu": ["S","Noun"], "made": ["S", "Noun"], "ipun": ["S", "Noun"],
-    "komang": ["S", "Noun"], "bapane": ["S" ,"Noun"], "wresa": ["S", "Noun"],
+    "pedagang": ["S", "NP", "Noun"],
+    "bendegane": ["S", "NP", "Noun"], 
+    "yowanane": ["S", "NP", "Noun"],
+    "bapa": [ "O", "S", "NP", "Noun"],
+    "bapane": [ "S", "NP", "Noun"],
+    "made": [ "Propnoun", "S", "NP"],
+    "komang": [ "Propnoun", "S", "NP"],
+    "ajus": [ "Propnoun", "S", "NP"],
+    "koster": [ "Propnoun", "S", "NP"],
+    "putu": [ "O", "Propnoun", "S", "NP"],
+    "sari": [ "Propnoun", "S", "NP"],
+    "ketut": [ "Propnoun", "S", "NP", "Noun"],
+    "denpasar": [ "Propnoun", "S", "NP"],
+    "kadek": [ "Propnoun", "S", "NP"],
+    "sanur": [ "Propnoun", "Noun", "NP"],
+    "bali": [ "Propnoun", "S", "NP"],
+    "wayan": [ "Propnoun", "S", "NP"],
+    "wresa": [ "Propnoun", "S", "NP"],
+    "ida": [ "Propnoun", "S", "NP"],
+
+    "ipun": [ "Pronoun", "S", "NP"],
+    "tiang": [ "Pronoun", "S", "NP"],
+    "ia": [ "Pronoun", "S", "NP"],
 
     # ==================================
-    # PRONOUN (Kata Ganti)
+    # NounT (NounT)
     # ==================================
-    "tiang": ["S", "O", "Pel", "Pronoun", "Noun"], 
-    "bapa": ["S", "O", "Pel", "Pronoun", "Noun"],
-    "meme": ["S", "O", "Pel", "Pronoun", "Noun"],
-    "anak": ["S", "O", "Pel", "Pronoun", "Noun"], 
-    "ida": ["S", "Pel", "Pronoun", "Noun"],
-    "ia": ["S", "O", "Pel", "Pronoun", "Noun"],
-    "murid":["Pronoun", "Noun"],
-    "guru":["Pronoun", "Noun"],
-    "gurune":["S", "O", "Pel", "Pronoun", "Noun"],
+    "ibi": ["NounT"], "mani": ["NounT"], "tengai": ["NounT"],
 
     # ==================================
     # ADJ (Kata Sifat)
     # ==================================
     "cenik": ["Adj"], "rajin": ["Adj"], "lingsir": ["Adj"], "anyar": ["Adj"],
     "truna": ["Adj"], "gede": ["Adj"], "kelih": ["Adj"], "anget": ["Adj"],
-    "pait": ["Adj"], "lanang": ["Adj"], "cerik": ["Adj"],
+    "pait": ["Adj"], "cerik": ["Adj"],
+    # "lanang": ["Adj"],
 
     # ==================================
     # ADV (Keterangan/Adverb)
     # ==================================
-    "buin": ["Adv"], "mani": ["Adv"], "ibi": ["Adv"], "sanja": ["Adv"],
-    "mare": ["Adv"],
+    "sesai": ["Adv"],
     
     # ==================================
     # DET (Determiner)
     # ==================================
-    "i": ["Det"], "ento": ["Det"], "punika": ["Det"], "nika": ["Det"],
-    "pare": ["Det"], "tiange": ["Det"],
-    
+    "ento": ["Det"], "punika": ["Det"], "nika": ["Det"],
+    "pare": ["Det"], "tiange": ["Det"], "ene": ["Det"],
+
+    # ==================================
+    # Part (Partikel)
+    # ==================================
+    "i": ["Part"],
+
+
     # ==================================
     # AUX (Kata Kerja Bantu)
     # ==================================
