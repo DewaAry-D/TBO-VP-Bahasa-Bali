@@ -17,7 +17,7 @@ daftar_kalimat = [
     "Menek kelih panak tiange",
     "Dadi belin tiange ketua STT",
     "Mekarya pegawe nika dados kepala bagian",
-    "Dadi Bapak tiange dokter anak",
+    "Dadi Bapak tiange dokter",
     "Maprakara mahasiswa punika dados asisten dosen",
     "Numbasang Adine Wi Ajus buku gambar",
     "Nyeduhang tamiu Biang teh anget",
