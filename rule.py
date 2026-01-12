@@ -46,13 +46,17 @@ grammar_bali = {
     # LEVEL FRASE (VP & NP)
     # ---------------------------------------------------------
     "VP": [
-        ("Verb", "Noun"), ("VP", "Noun"), ("Aux", "Verb"),
-        ("Verb", "Adj"), ("VP", "NP"), 
+        ("Verb", "Noun"), 
+        ("VP", "Noun"), 
+        ("Aux", "Verb"),
+        ("Verb", "Adj"), 
+        ("VP", "NP"), 
         ("Adv", "Verb"),
     ],
 
     "NP": [
-        ("Noun", "Pronoun"), ("Noun", "Adj"),
+        ("Noun", "Pronoun"), 
+        ("Noun", "Adj"),
         ("Noun", "Num"), 
         ("NP", "Adj"), 
         ("NP", "Num"), 
@@ -67,7 +71,8 @@ grammar_bali = {
     # ---------------------------------------------------------
     "S": [ 
         ("Noun", "Det"), 
-        ("Noun", "Pronoun"), ("Noun", "Adj"),
+        ("Noun", "Pronoun"), 
+        ("Noun", "Adj"),
         ("Noun", "Num"),  
         ("Part", "Noun"),
         ("Part", "Propnoun"),
@@ -83,30 +88,47 @@ grammar_bali = {
     "O": [ 
         ("Noun", "Det"),
         ("Noun", "Pronoun"),
-        ("Noun", "Adj"), ("Noun", "Num"), 
-        ("NP", "Det"), ("NP", "Noun"),
-        ("NP", "Adj"), ("NP", "Num"), 
+        ("Noun", "Adj"), 
+        ("Noun", "Num"), 
+        ("NP", "Det"), 
+        ("NP", "Noun"),
+        ("NP", "Adj"), 
+        ("NP", "Num"), 
         ("Noun", "NP"),
         ("Part", "Noun"),
     ],
 
     "Pel": [ 
-        ("Verb", "Noun"), ("VP", "NP"),
-        ("Adv", "Verb"), ("Noun", "Det"), ("Noun", "Noun"),
-        ("Noun", "Pronoun"), ("Noun", "Adj"), ("Noun", "Num"),
-        ("NP", "Det"), ("NP", "Adj"), 
+        ("Verb", "Noun"), 
+        ("VP", "NP"),
+        ("Adv", "Verb"), 
+        ("Noun", "Det"), 
+        ("Noun", "Noun"),
+        ("Noun", "Pronoun"), 
+        ("Noun", "Adj"), 
+        ("Noun", "Num"),
+        ("NP", "Det"), 
+        ("NP", "Adj"), 
 
     ],
 
     "Ket": [
-        ("Prep", "Adv"), ("Prep", "Noun"),
-        ("PP", "Noun"), ("PP", "NP"), ("Adv", "Noun"),
-        ("Adv", "NP"), ("Prep", "NounT"), ("Prep", "Propnoun"), 
-        ("Prep", "NP"), ("NounT", "NP"), ("NounT", "NounT"),
+        ("Prep", "Adv"), 
+        ("Prep", "Noun"),
+        ("Prep", "NounT"), 
+        ("Prep", "Propnoun"), 
+        ("Prep", "NP"), 
+        ("PP", "Noun"), 
+        ("PP", "NP"), 
+        ("Adv", "Noun"),
+        ("Adv", "NP"),
+        ("NounT", "NP"), 
+        ("NounT", "NounT"),
     ],
 
     "PP": [
-        ("Prep", "Noun"), ("Prep", "NP"),
+        ("Prep", "Noun"), 
+        ("Prep", "NP"),
     ],
 }
 
