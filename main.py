@@ -55,8 +55,10 @@ class CYKParser:
         table = [[[] for _ in range(n)] for _ in range(n)]
 
         for i, word in enumerate(words):
-            if word not in self.lexicon: return f"Kata tidak dikenal: '{word}'"
-            for tag in self.lexicon[word]: table[i][i].append((tag, word, None))
+            if word not in self.lexicon:
+                return f"Kata tidak dikenal: '{word}'"
+            for tag in self.lexicon[word]:
+                table[i][i].append((tag, word, None))
 
         for length in range(2, n + 1):
             for i in range(n - length + 1):
