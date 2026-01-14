@@ -107,19 +107,22 @@ def get_pattern_string(node):
 # =========================================================
 # 3. PRINT TABEL
 # =========================================================
-def print_table_with_border(df):
-    # Konversi semua data ke string
+RESET = "\033[0m"
+GRAY = "\033[90m"
+CYAN = "\033[96m"
+
+def print_table_with_border(df, border_color=CYAN):
     df = df.astype(str)
 
-    # Hitung lebar tiap kolom
     col_widths = {
         col: max(len(col), df[col].map(len).max())
         for col in df.columns
     }
 
-    # Fungsi garis
     def line(char="-", cross="+"):
-        return cross + cross.join(char * (col_widths[col] + 2) for col in df.columns) + cross
+        return border_color + cross + cross.join(
+            char * (col_widths[col] + 2) for col in df.columns
+        ) + cross + RESET
 
     # Header
     print(line("="))
@@ -127,14 +130,13 @@ def print_table_with_border(df):
     print(header)
     print(line("="))
 
-    # Baris data
+    # Rows
     for _, row in df.iterrows():
         row_line = "| " + " | ".join(
             row[col].ljust(col_widths[col]) for col in df.columns
         ) + " |"
         print(row_line)
         print(line("-"))
-
 
 # =========================================================
 # 4. FUNGSI UTAMA
