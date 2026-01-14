@@ -105,7 +105,39 @@ def get_pattern_string(node):
     return get_pattern_string(node[1]) + get_pattern_string(node[2])
 
 # =========================================================
-# 3. FUNGSI UTAMA
+# 3. PRINT TABEL
+# =========================================================
+def print_table_with_border(df):
+    # Konversi semua data ke string
+    df = df.astype(str)
+
+    # Hitung lebar tiap kolom
+    col_widths = {
+        col: max(len(col), df[col].map(len).max())
+        for col in df.columns
+    }
+
+    # Fungsi garis
+    def line(char="-", cross="+"):
+        return cross + cross.join(char * (col_widths[col] + 2) for col in df.columns) + cross
+
+    # Header
+    print(line("="))
+    header = "| " + " | ".join(col.ljust(col_widths[col]) for col in df.columns) + " |"
+    print(header)
+    print(line("="))
+
+    # Baris data
+    for _, row in df.iterrows():
+        row_line = "| " + " | ".join(
+            row[col].ljust(col_widths[col]) for col in df.columns
+        ) + " |"
+        print(row_line)
+        print(line("-"))
+
+
+# =========================================================
+# 4. FUNGSI UTAMA
 # =========================================================
 def jalankan_evaluasi():
     parser = CYKParser(grammar_bali, lexicon_bali)
@@ -153,11 +185,13 @@ def jalankan_evaluasi():
     akurasi = (jumlah_benar / total_data) * 100
     
     print("--- Sampel Hasil (Awal & Akhir) ---")
-    print(df.head(50).to_string(index=False))
+    print_table_with_border(df)
+
     
     print("\n" + "="*50)
     print(f"TOTAL DATA     : {total_data}")
     print(f"PREDIKSI BENAR : {jumlah_benar}")
+    print(f"PREDIKSI SALAH : {total_data - jumlah_benar}")
     print(f"AKURASI        : {akurasi:.2f}%")
     print("="*50)
 
