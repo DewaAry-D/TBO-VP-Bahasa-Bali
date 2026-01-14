@@ -141,7 +141,7 @@ class BalineseParserApp:
         h_scroll = tk.Scrollbar(tree_tab, orient="horizontal")
         v_scroll = tk.Scrollbar(tree_tab, orient="vertical")
         self.canvas_tree = tk.Canvas(tree_tab, bg="#222831", highlightthickness=0, 
-                                     xscrollcommand=h_scroll.set, yscrollcommand=v_scroll.set, cursor="fleur")
+                                    xscrollcommand=h_scroll.set, yscrollcommand=v_scroll.set, cursor="fleur")
         
         h_scroll.config(command=self.canvas_tree.xview)
         v_scroll.config(command=self.canvas_tree.yview)

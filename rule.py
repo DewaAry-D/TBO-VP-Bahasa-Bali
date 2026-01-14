@@ -38,7 +38,7 @@ grammar_bali = {
     "P": [
         ("Adv", "Verb"),
         ("Aux", "Verb"),
-        ("Verb", "Adj"),
+        # ("Verb", "Adj"),
         ("Verb", "Verb"),
     ],
 
@@ -46,20 +46,24 @@ grammar_bali = {
     # LEVEL FRASE (VP & NP)
     # ---------------------------------------------------------
     "VP": [
-        ("Verb", "Noun"), ("VP", "Noun"), ("Aux", "Verb"),
-        ("Verb", "Adj"), ("VP", "NP"), 
+        ("Verb", "Noun"), 
+        ("VP", "Noun"), 
+        ("Aux", "Verb"),
+        ("Verb", "Adj"), 
+        ("VP", "NP"), 
         ("Adv", "Verb"),
     ],
 
     "NP": [
-        ("Noun", "Pronoun"), ("Noun", "Adj"),
+        ("Noun", "Pronoun"), 
+        ("Noun", "Adj"),
         ("Noun", "Num"), 
         ("NP", "Adj"), 
         ("NP", "Num"), 
-        ("NP", "Noun"),
         ("NP", "Propnoun"),
         ("Noun", "Propnoun"),
         ("Noun", "Noun"), 
+        # ("NP", "Noun"),
     ],
 
     # ---------------------------------------------------------
@@ -67,7 +71,8 @@ grammar_bali = {
     # ---------------------------------------------------------
     "S": [ 
         ("Noun", "Det"), 
-        ("Noun", "Pronoun"), ("Noun", "Adj"),
+        ("Noun", "Pronoun"), 
+        ("Noun", "Adj"),
         ("Noun", "Num"),  
         ("Part", "Noun"),
         ("Part", "Propnoun"),
@@ -83,30 +88,47 @@ grammar_bali = {
     "O": [ 
         ("Noun", "Det"),
         ("Noun", "Pronoun"),
-        ("Noun", "Adj"), ("Noun", "Num"), 
-        ("NP", "Det"), ("NP", "Noun"),
-        ("NP", "Adj"), ("NP", "Num"), 
+        ("Noun", "Adj"), 
+        ("Noun", "Num"), 
+        ("NP", "Det"), 
+        ("NP", "Noun"),
+        ("NP", "Adj"), 
+        ("NP", "Num"), 
         ("Noun", "NP"),
         ("Part", "Noun"),
     ],
 
     "Pel": [ 
-        ("Verb", "Noun"), ("VP", "NP"),
-        ("Adv", "Verb"), ("Noun", "Det"), ("Noun", "Noun"),
-        ("Noun", "Pronoun"), ("Noun", "Adj"), ("Noun", "Num"),
-        ("NP", "Det"), ("NP", "Adj"), 
+        ("Verb", "Noun"), 
+        ("VP", "NP"),
+        ("Adv", "Verb"), 
+        ("Noun", "Det"), 
+        ("Noun", "Noun"),
+        ("Noun", "Pronoun"), 
+        ("Noun", "Adj"), 
+        ("Noun", "Num"),
+        ("NP", "Det"), 
+        ("NP", "Adj"), 
 
     ],
 
     "Ket": [
-        ("Prep", "Adv"), ("Prep", "Noun"),
-        ("PP", "Noun"), ("PP", "NP"), ("Adv", "Noun"),
-        ("Adv", "NP"), ("Prep", "NounT"), ("Prep", "Propnoun"), 
-        ("Prep", "NP"), ("NounT", "NP"), ("NounT", "NounT"),
+        ("Prep", "Adv"), 
+        ("Prep", "Noun"),
+        ("Prep", "NounT"), 
+        ("Prep", "Propnoun"), 
+        ("Prep", "NP"), 
+        ("PP", "Noun"), 
+        ("PP", "NP"), 
+        ("Adv", "Noun"),
+        ("Adv", "NP"),
+        ("NounT", "NP"), 
+        ("NounT", "NounT"),
     ],
 
     "PP": [
-        ("Prep", "Noun"), ("Prep", "NP"),
+        ("Prep", "Noun"), 
+        ("Prep", "NP"),
     ],
 }
 
@@ -169,6 +191,8 @@ lexicon_bali = {
     "mekarya":  ["Verb", "P"], 
     "dadi":     ["Verb", "P"], 
     "dados":    ["Verb", "P"],  
+    "ngarit":    ["Verb", "P"],  
+    "malali":    ["Verb", "P"],
 
     # ==================================
     # NOUN (Kata Benda)
@@ -176,14 +200,14 @@ lexicon_bali = {
     "anak": ["NP", "Noun"], "kedis": ["NP", "Noun"], "bayi": ["NP", "Noun"], 
     "bapak": ["NP", "Noun"], "meme": ["NP", "Noun"], 
     "siswa": ["NP", "Noun"], "murid": ["NP", "Noun"], 
-    "guru": ["NP", "Noun"], "petani": ["NP", "Noun"], 
+    "petani": ["NP", "Noun"], 
     "pesaur": ["NP", "Noun"], "tugas": ["NP", "Noun"], "okan": ["NP", "Noun"], 
     "biang": ["NP", "Noun"], "dewi": ["NP", "Noun"], "sepatu": ["NP", "Noun"], 
     "gamelan": ["NP", "Noun"], "baleganjur": ["NP", "Noun"], 
     "pria": ["NP", "Noun"], "motor": ["NP", "Noun"], 
     "pegawai": ["NP", "Noun"], "staff": ["NP", "Noun"], "panak": ["NP", "Noun"], 
     "belin": ["NP", "Noun"], "ketua": ["NP", "Noun"], "stt": ["NP", "Noun"], 
-    "kepala": ["NP", "Noun"], "bagian": ["NP", "Noun"], "dokter": ["NP", "Noun"], 
+    "kepala": ["NP", "Noun"], "bagian": ["NP", "Noun"],
     "mahasiswa": ["NP", "Noun"], "asisten": ["NP", "Noun"], "dosen": ["NP", "Noun"], 
     "wi": ["NP", "Noun"], "adi": ["NP", "Noun"], 
     "tamiu": ["NP", "Noun"], "teh": ["NP", "Noun"], "ajik": ["NP", "Noun"], 
@@ -207,22 +231,29 @@ lexicon_bali = {
     "tengai": ["NP", "Noun"], "alase": ["NP", "Noun"], 
     "turisne": ["NP", "Noun"], "kamben": ["NP", "Noun"], 
     "tongos": ["NP", "Noun"], "buah": ["NP", "Noun"], 
-    "stroberi": ["NP", "Noun"], "gurune": ["NP", "Noun"],
+    "stroberi": ["NP", "Noun"],
     "gambar": ["NP", "Noun"], "pemacul": ["NP", "Noun"],
     "pegawe": ["NP", "Noun"], "paon": ["NP", "Noun"],
     "baline": ["NP", "Noun"], "wisate": ["NP", "Noun"],
     "lanang": ["NP", "Noun"],
-    "buku": ["NP", "Noun"],
     "jukung": ["NP", "Noun"],
     "sela": ["NP", "Noun"],
     "jukut": ["NP", "Noun"],
     "ares": ["NP", "Noun"],
     "yeh": ["NP", "Noun"],
 
+    "carik": ["NP", "Noun"],
+    "pura": ["NP", "Noun"],
+    "paon": ["NP", "Noun"],
+    "mobil": ["NP", "Noun"],
+    "mobil": ["NP", "Noun"],
+    "sekolah": ["NP", "Noun"],
+    "jumah": ["NP", "Noun"],
+
     # ==================================
     # OBJEK
     # ==================================
-    "nasi": [ "Noun", "O", "NP"], "buku": [ "Noun", "O", "NP"],
+    "nasi": [ "O", "Noun", "NP"], "buku": [ "Noun", "O", "NP"],
     "padi": [ "Noun", "O", "NP"], "susu": [ "Noun", "O", "NP"],
     "tamiune": [ "Noun", "O", "NP"],
     "adine": ["O", "S", "Noun"],
@@ -234,10 +265,13 @@ lexicon_bali = {
 
     "bekel": ["Pel", "NP", "Noun"],
     "saang": ["Pel", "NP", "Noun"],
+    "guru": ["Pel","NP", "Noun"],
+    "dokter": ["Pel","NP", "Noun"], 
 
     # ==================================
     # Subjek dan PROPNOUN dan Pronoun
     # ==================================
+    "gurune": ["S", "NP", "Noun"],
     "pedagang": ["S", "NP", "Noun"],
     "bendegane": ["S", "NP", "Noun"], 
     "yowanane": ["S", "NP", "Noun"],
@@ -251,12 +285,14 @@ lexicon_bali = {
     "sari": [ "Propnoun", "S", "NP"],
     "ketut": [ "Propnoun", "S", "NP", "Noun"],
     "denpasar": [ "Propnoun", "S", "NP"],
+    "bandung": [ "Propnoun", "S", "NP"],
     "kadek": [ "Propnoun", "S", "NP"],
     "sanur": [ "Propnoun", "Noun", "NP"],
     "bali": [ "Propnoun", "S", "NP"],
     "wayan": [ "Propnoun", "S", "NP"],
     "wresa": [ "Propnoun", "S", "NP"],
     "ida": [ "Propnoun", "S", "NP"],
+    "gede": [ "Propnoun", "S", "NP"],
 
     "ipun": [ "Pronoun", "S", "NP"],
     "tiang": [ "Pronoun", "S", "NP"],
@@ -271,7 +307,7 @@ lexicon_bali = {
     # ADJ (Kata Sifat)
     # ==================================
     "cenik": ["Adj"], "rajin": ["Adj"], "lingsir": ["Adj"], "anyar": ["Adj"],
-    "truna": ["Adj"], "gede": ["Adj"], "kelih": ["Adj"], "anget": ["Adj"],
+    "truna": ["Adj"], "gede": ["Adj"], "kelih": ["Adj", "Pel"], "anget": ["Adj"],
     "pait": ["Adj"], "cerik": ["Adj"],
     # "lanang": ["Adj"],
 
@@ -305,5 +341,5 @@ lexicon_bali = {
     # ==================================
     # NUM (Numerik)
     # ==================================
-    "nem": ["Num"]
+    "nem": ["Num"], "liu": ["Num"],
 }
