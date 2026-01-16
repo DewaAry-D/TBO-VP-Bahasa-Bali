@@ -158,7 +158,6 @@ class BalineseParserApp:
         info_tab = ttk.Frame(notebook)
         notebook.add(info_tab, text="ℹ️ Log & Status")
         
-        # === MODIFIKASI: Text dibuat disabled dari awal ===
         self.txt_info = tk.Text(
             info_tab, 
             font=("Consolas", 11), 
@@ -167,7 +166,7 @@ class BalineseParserApp:
             relief="flat", 
             padx=15, 
             pady=15,
-            state="disabled" # KUNCI DARI AWAL
+            state="disabled"
         )
         self.txt_info.pack(fill="both", expand=True)
 
@@ -183,7 +182,6 @@ class BalineseParserApp:
         if node[2] is None: return []
         return self.get_pattern(node[1]) + self.get_pattern(node[2])
 
-    # === HELPER: Fungsi khusus untuk menulis log read-only ===
     def write_log(self, text):
         self.txt_info.config(state="normal") # BUKA
         self.txt_info.delete("1.0", tk.END)  # BERSIHKAN
@@ -197,7 +195,6 @@ class BalineseParserApp:
             return
 
         self.canvas_tree.delete("all")
-        # Panggil fungsi helper untuk reset log
         self.write_log("") 
         self.root.update_idletasks()
 
@@ -226,7 +223,7 @@ class BalineseParserApp:
                 f"----------------------------------------\n"
                 f"Visualisasi tree telah digambar pada tab visual tree."
             )
-            # Tulis ke log dengan helper
+            
             self.write_log(info_text)
             
             # Gambar Tree

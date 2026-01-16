@@ -44,7 +44,12 @@ list_label_jawaban = [
     "P - O - S - Pel - Ket", "P - O - S - Pel - Ket", "P - O - S - Pel - Ket",
 
     # 48-50: Pola P - S - O - Pel - Ket (PSOPelKet)
-    "P - S - O - Pel - Ket", "P - S - O - Pel - Ket", "P - S - O - Pel - Ket", 
+    "P - S - O - Pel - Ket", "P - S - O - Pel - Ket", "P - S - O - Pel - Ket",
+
+    "INVALID", "INVALID", "INVALID", "INVALID", "INVALID",
+    "INVALID", "INVALID", "INVALID", "INVALID", "INVALID",
+    "INVALID", "INVALID", "INVALID", "INVALID", "INVALID",
+    "INVALID", "INVALID", "INVALID", "INVALID", "INVALID",
 ]
 
 dataset_uji = list(zip(daftar_kalimat, list_label_jawaban))
@@ -64,7 +69,6 @@ class CYKParser:
         
         table = [[[] for _ in range(n)] for _ in range(n)]
 
-        # --- FILL DIAGONAL ---
         for i, word in enumerate(words):
             if word not in self.lexicon:
                 return f"ERROR: Kata '{word}' tidak dikenal."
@@ -86,9 +90,8 @@ class CYKParser:
                                             table[i][j].append(new_node)
 
         # --- CEK HASIL ---
-        valid_nodes = [node for node in table[0][n - 1] if node[0] == "K"]
-        if valid_nodes:
-            return valid_nodes[0]
+        for node in table[0][n - 1]:
+            if node[0] == "K": return node
         return None
 
 def get_pattern_string(node):
@@ -171,6 +174,10 @@ def jalankan_evaluasi():
         status = "SALAH"
         if pola_terdeteksi == pola_kunci:
             status = "BENAR"
+        elif pola_kunci == "INVALID" and ("ERROR" in pola_terdeteksi or "INVALID" in pola_terdeteksi):
+            status = "BENAR"
+        
+        if status == "BENAR":
             jumlah_benar += 1
         
         # 4. Simpan ke Log

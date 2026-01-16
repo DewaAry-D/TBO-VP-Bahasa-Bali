@@ -22,7 +22,7 @@ daftar_kalimat = [
     "Numbasang Adine Wi Ajus buku gambar",
     "Nyeduhang tamiune Biang teh anget",
     "Milih Ajik Koster krama Baline dados gubernur",
-    "Ngemaang Putu I Meme bekel masuk",
+    "Ngemaang Putu I Meme bekel",
     "Nyemakang bapa timpalne pancing",
     "Ngalihang bapa sampine padang",
     "Ngurukang Bli Made I Agus nepak kendang",
@@ -48,5 +48,34 @@ daftar_kalimat = [
     "Nyilihang timpalne I Wayan buku tulis mani tengai",
     "Ngalihang Bapa I Meme saang uli alase",
     "Nawahang pedagang turis kamben ring tongos wisate",
-    "Ngalapang petani tamiune buah stroberi di tegal"
+    "Ngalapang petani tamiune buah stroberi di tegal",
+
+    # Kalimat salah
+    # Kelompok Prad
+    "Dueg pisan masatua adine ring sekolah",
+    "Gedeg teken timpalne ia",
+    "Inguh pisan ia ngitungang piutang di jumahne",
+    "Tresna teken okannyane ida",
+    "Makesiab pan Nukarna nepukin pan Bagya",
+
+    # Kelompok Juli
+    "Ring sanggah ne canang ento telu tanding tuni",
+    "Ring wantilan gangsa ne molas tuni semeng",
+    "Di langit akeh bintange dibi peteng",
+    "Di tukad bebeke kutus",
+    "Ring kantor I Wayan Sudra direktur",
+
+    # Kelompok Andra
+    "Limang tiban umur adin tiange jani",
+    "Satak tali rupiah sepatune",
+    "Limang diri anggota kelompok tiange sareng ketua",
+    "Telung ukud ubuhan meongne",
+    "Dasa kilometer joh jumahne ke kantor",
+
+    # Kelompok Arya
+    "Dagang canang meme tiangé ring peken",
+    "Campuhan arak inemané ento teken madu",
+    "Musuh bebuyutan ia tekén I Wayan uling pidan",
+    "Punia tulus jinah punika ring pura rikala odalan",
+    "Paica dué kampuh sutra punika saking Puri Agung dibi sanja"
 ]
