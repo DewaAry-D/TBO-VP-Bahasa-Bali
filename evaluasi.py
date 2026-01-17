@@ -46,6 +46,7 @@ list_label_jawaban = [
     # 48-50: Pola P - S - O - Pel - Ket (PSOPelKet)
     "P - S - O - Pel - Ket", "P - S - O - Pel - Ket", "P - S - O - Pel - Ket",
 
+    # 51-70: Contoh Kalimat Negatif
     "INVALID", "INVALID", "INVALID", "INVALID", "INVALID",
     "INVALID", "INVALID", "INVALID", "INVALID", "INVALID",
     "INVALID", "INVALID", "INVALID", "INVALID", "INVALID",
