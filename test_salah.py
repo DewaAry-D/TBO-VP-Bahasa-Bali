@@ -1,6 +1,6 @@
 import pandas as pd
 from rule import grammar_bali, lexicon_bali
-from kalimat import daftar_kalimat
+from kalimat_salah import daftar_kalimat_salah
 
 class CYKParser:
     def __init__(self, grammar, lexicon):
@@ -59,7 +59,7 @@ if __name__ == "__main__":
     parser = CYKParser(grammar_bali, lexicon_bali)
 
     # 2. Looping untuk mengecek setiap kalimat dalam array
-    for i, kalimat in enumerate(daftar_kalimat, 1):
+    for i, kalimat in enumerate(daftar_kalimat_salah, 1):
         print(f"KASUS #{i}: \"{kalimat}\"")
         print("-" * 40)
         
