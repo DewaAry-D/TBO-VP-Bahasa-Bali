@@ -134,7 +134,7 @@ grammar_bali = {
 
 lexicon_bali = {
     # ==================================
-    # VERB
+    # VERB (Kata Kerja)
     # ==================================
     "melaib":   ["Verb", "P"], 
     "makeber":  ["Verb", "P"],  
@@ -186,13 +186,20 @@ lexicon_bali = {
     "ngicen":   ["Verb", "P"], 
     "meplalian": ["Verb", "P"], 
     "mula":     ["Verb", "P"], 
-    "nyampat": ["Verb", "P"], 
+    "nyampat":  ["Verb", "P"], 
     "melajah":  ["Verb", "P", "Pel"], 
     "mekarya":  ["Verb", "P"], 
     "dadi":     ["Verb", "P"], 
     "dados":    ["Verb", "P"],  
-    "ngarit":    ["Verb", "P"],  
-    "malali":    ["Verb", "P"],
+    "ngarit":   ["Verb", "P"],  
+    "malali":   ["Verb", "P"],
+
+    # Kata Kerja Tambahan dari Data Negatif
+    "masatua":    ["Verb"],
+    "ngitungang": ["Verb"],
+    "nepukin":    ["Verb"],
+    "due":        ["Verb", "Noun"],
+    "dué":        ["Verb", "Noun"], # Variasi aksen
 
     # ==================================
     # NOUN (Kata Benda)
@@ -241,14 +248,29 @@ lexicon_bali = {
     "jukut": ["NP", "Noun"],
     "ares": ["NP", "Noun"],
     "yeh": ["NP", "Noun"],
-
     "carik": ["NP", "Noun"],
     "pura": ["NP", "Noun"],
-    "paon": ["NP", "Noun"],
-    "mobil": ["NP", "Noun"],
-    "mobil": ["NP", "Noun"],
     "sekolah": ["NP", "Noun"],
     "jumah": ["NP", "Noun"],
+
+    # Kata Benda Tambahan dari Data Negatif
+    "pan": ["Noun", "NP"], "piutang": ["Noun", "NP"], "jumahne": ["Noun", "NP"],
+    "okannyane": ["Noun", "NP"], "sanggah": ["Noun", "NP"], "canang": ["Noun", "NP"],
+    "tanding": ["Noun", "NP"], "gangsa": ["Noun", "NP"], "semeng": ["Noun", "NounT"],
+    "langit": ["Noun", "NP"], "bintange": ["Noun", "NP"], "tukad": ["Noun", "NP"],
+    "bebeke": ["Noun", "NP"], "kantor": ["Noun", "NP"], "direktur": ["Noun", "NP"],
+    "tiban": ["Noun", "NP"], "umur": ["Noun", "NP"], "rupiah": ["Noun", "NP"],
+    "sepatune": ["Noun", "NP"], "anggota": ["Noun", "NP"], "kelompok": ["Noun", "NP"],
+    "ukud": ["Noun", "NP"], "ubuhan": ["Noun", "NP"], "meongne": ["Noun", "NP"],
+    "kilometer": ["Noun", "NP"], "dagang": ["Noun", "NP"], "campuhan": ["Noun", "NP"],
+    "arak": ["Noun", "NP"], "inemane": ["Noun", "NP"], "madu": ["Noun", "NP"],
+    "musuh": ["Noun", "NP"], "punia": ["Noun", "NP"], "jinah": ["Noun", "NP"],
+    "odalan": ["Noun", "NP"], "paica": ["Noun", "NP"], "kampuh": ["Noun", "NP"],
+    "sutra": ["Noun", "NP"], "puri": ["Noun", "NP"],
+
+    "adin": ["Noun", "NP"],
+    "diri": ["Noun", "NP"],
+    "inemané": ["Noun", "NP"], # Variasi aksen
 
     # ==================================
     # OBJEK
@@ -298,10 +320,21 @@ lexicon_bali = {
     "tiang": [ "Pronoun", "S", "NP"],
     "ia": [ "Pronoun", "S", "NP"],
 
+    # Pronoun/Propnoun Tambahan
+    "nukarna": ["Propnoun", "S", "NP"],
+    "bagya": ["Propnoun", "S", "NP"],
+    "sudra": ["Propnoun", "S", "NP"],
+    "tiange": ["Pronoun", "S", "NP"],
+    "tiangé": ["Pronoun", "S", "NP"], # Variasi aksen
+
     # ==================================
-    # NounT (NounT)
+    # NounT (Waktu)
     # ==================================
     "ibi": ["NounT"], "mani": ["NounT"], "tengai": ["NounT"],
+    
+    # Tambahan Waktu
+    "tuni": ["NounT"], "dibi": ["NounT"], "jani": ["NounT"], 
+    "pidan": ["NounT"], "rikala": ["NounT"], "sanja": ["NounT"],
 
     # ==================================
     # ADJ (Kata Sifat)
@@ -309,24 +342,30 @@ lexicon_bali = {
     "cenik": ["Adj"], "rajin": ["Adj"], "lingsir": ["Adj"], "anyar": ["Adj"],
     "truna": ["Adj"], "gede": ["Adj"], "kelih": ["Adj", "Pel"], "anget": ["Adj"],
     "pait": ["Adj"], "cerik": ["Adj"],
-    # "lanang": ["Adj"],
+    
+    # Tambahan Sifat
+    "dueg": ["Adj"], "gedeg": ["Adj"], "inguh": ["Adj"], "tresna": ["Adj"],
+    "makesiab": ["Adj"], "akeh": ["Adj"], "joh": ["Adj"], "bebuyutan": ["Adj"],
+    "tulus": ["Adj"], "agung": ["Adj"],
 
     # ==================================
     # ADV (Keterangan/Adverb)
     # ==================================
     "sesai": ["Adv"],
+    # Tambahan Adv
+    "pisan": ["Adv"], 
     
     # ==================================
     # DET (Determiner)
     # ==================================
     "ento": ["Det"], "punika": ["Det"], "nika": ["Det"],
     "pare": ["Det"], "tiange": ["Det"], "ene": ["Det"],
+    "ne": ["Det"],
 
     # ==================================
     # Part (Partikel)
     # ==================================
     "i": ["Part"],
-
 
     # ==================================
     # AUX (Kata Kerja Bantu)
@@ -338,8 +377,18 @@ lexicon_bali = {
     # ==================================
     "di": ["Prep"], "ring": ["Prep"], "uli": ["Prep"], "ka": ["Prep"],
     
+    # Tambahan Prep
+    "teken": ["Prep"], "ke": ["Prep"], "saking": ["Prep"],
+    "tekén": ["Prep"], # Variasi aksen
+    "sareng": ["Prep"],
+    "uling": ["Prep"],
+
     # ==================================
     # NUM (Numerik)
     # ==================================
     "nem": ["Num"], "liu": ["Num"],
+
+    # Tambahan Numerik
+    "telu": ["Num"], "molas": ["Num"], "kutus": ["Num"], "limang": ["Num"],
+    "satak": ["Num"], "tali": ["Num"], "telung": ["Num"], "dasa": ["Num"],
 }
